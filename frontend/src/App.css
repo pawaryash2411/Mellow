@@ -1,0 +1,628 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* ############################################################################################# */
+/* Default CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 75px;
+}
+
+body {
+    overflow-x: hidden;
+
+    background: linear-gradient(45deg, #131313e7, rgb(0, 0, 0)) !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+[data-tooltip] {
+    position: relative;
+    cursor: pointer;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: #333;
+    color: aqua;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+p,
+a,
+li,
+button,
+ul {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+button {
+    border: 0;
+    background-color: transparent;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+}
+
+@media (min-width:1700px) {
+    main .container {
+        max-width: 100%;
+        padding: 0 150px;
+    }
+}
+
+
+
+
+
+
+
+/* ################################################################################################ */
+/* ****************Scroll Bar CSS********************* */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(67, 67, 67);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #723cacf8 -5.91%, #ff1aec 111.58%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(114, 60, 172, 0.571) -5.91%, rgba(255, 26, 236, 0.612) 111.58%);
+}
+
+
+
+
+
+
+
+/************ Navbar Css ************/
+.MuiRating-iconEmpty {
+    color: green;
+}
+
+#logo {
+    position: relative;
+    width: 10%;
+}
+
+
+#logo:hover {
+    opacity: .80;
+    transition: all 0.3s ease-in-out;
+}
+
+nav.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    transition: 0.32s ease-in-out;
+}
+
+nav.navbar.scrolled {
+    background-color: #121212;
+}
+
+.navbar-link {
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.8px;
+    padding: 0 25px;
+    font-size: 15px;
+    opacity: 0.75;
+}
+
+.navbar-link:hover,
+.navbar-link.active {
+    opacity: 2;
+    transition: all 0.5s ease-in-out;
+    font-weight: 700;
+    color: #fff;
+}
+
+span.navbar-text {
+    display: flex;
+    align-items: center;
+}
+
+.social-icon a {
+    width: 42px;
+    height: 42px;
+    background: #434343;
+    display: inline-flex;
+    border-radius: 50%;
+    margin-right: 6px;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    border: 1px solid rgb(0, 0, 0);
+    filter: saturate(100%);
+}
+
+.social-icon a::before {
+    content: "";
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 0.3s ease-in-out;
+}
+
+.social-icon a:hover::before {
+    transform: scale(1);
+}
+
+.social-icon a img {
+    width: 60%;
+    z-index: 1;
+    transition: 0.3s ease-in-out;
+}
+
+.social-icon a:hover img {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rotate(346deg) brightness(95%) contrast(86%);
+}
+
+.navbar-text button {
+    font-weight: 700;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 8px 15px;
+    font-size: 18px;
+    margin-left: 18px;
+    border-radius: 5px;
+    position: relative;
+    background-color: transparent;
+    transition: 0.3s ease-in-out;
+}
+
+.navbar-text button span {
+    z-index: 1;
+}
+
+.navbar-text button::before {
+    content: "";
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    background-color: #fff;
+    color: aqua;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    transition: 0.3s ease-in-out;
+}
+
+.navbar-text button:hover {
+    color: #000000d6;
+}
+
+.navbar-text button:hover::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+nav.navbar .navbar-toggler:active,
+nav.navbar .navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+nav.navbar .navbar-toggler-icon {
+    width: 24px;
+    height: 17px;
+    background-image: none;
+    position: relative;
+    border-bottom: 2px solid #fff;
+    transition: all 300ms linear;
+    top: -2px;
+}
+
+nav.navbar .navbar-toggler-icon:focus {
+    border-bottom: 2px solid #fff;
+}
+
+nav.navbar .navbar-toggler-icon:after,
+nav.navbar .navbar-toggler-icon:before {
+    width: 24px;
+    position: absolute;
+    height: 2px;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    content: '';
+    z-index: 2;
+    transition: all 300ms linear;
+}
+
+nav.navbar .navbar-toggler-icon:after {
+    top: 8px;
+}
+
+nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+    transform: rotate(45deg);
+    background-color: #fff;
+    height: 2px;
+}
+
+nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
+    transform: translateY(8px) rotate(-45deg);
+    background-color: #fff;
+    height: 2px;
+}
+
+nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    border-color: transparent;
+}
+
+
+
+
+
+/* ############################################################################################# */
+/************ Banner Css ************/
+
+
+
+/* ############################################################################################# */
+/* *********Products CSS*********** */
+
+.container h2 {
+    margin: 4vmax;
+    color: #fff;
+    font: 400;
+    font-size: 30px;
+    border-bottom: 2px solid aqua;
+}
+
+#productID {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+/* ############################################################################################# */
+/* **********Features CSS*************** */
+
+.features img {
+    max-width: 100px;
+}
+
+.features p {
+    font-weight: 400;
+    font-size: 17px;
+    color: aqua;
+    letter-spacing: 2px;
+}
+
+.features b {
+    font-weight: 400;
+    font-size: 14px;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+
+/* #####################################################################################################*/
+/* ***********NewsLetter CSS**********  */
+.newsletter-bx {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.578), rgba(114, 60, 172, 0.973), rgba(1, 1, 1, 0.651), rgb(255, 26, 236) 111.58%);
+    border-radius: 10px;
+    color: #121212;
+    padding: 85px 125px;
+    margin: 20px;
+    letter-spacing: 2px;
+}
+
+.newsletter-bx h3 {
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0.5px;
+    line-height: 0.5em;
+    color: #fff;
+}
+
+.newsletter-bx p {
+    color: aqua;
+    font-size: 45px;
+}
+
+.new-email-bx {
+    background: #fff;
+    padding: 5px;
+    border-radius: 20px;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+}
+
+
+.new-email-bx::after {
+    content: "";
+    background: #fff;
+    border-radius: 20px;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.new-email-bx input {
+    position: relative;
+    width: 100%;
+    color: #121212;
+    font-weight: 500;
+    background: transparent;
+    border: 0;
+    padding: 0 15px;
+}
+
+.new-email-bx button {
+    background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+    padding: 20px 60px;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 18px;
+}
+
+
+
+
+/* ############################################################################################# */
+/* *************Footer CSS******************** */
+
+.footer img {
+    width: 25%;
+}
+
+.footer p {
+    font-weight: 400;
+    font-size: 13.5px;
+    color: #fffbfb;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
+.footer b {
+    color: aqua;
+}
+
+.application img {
+    width: 20%;
+}
+
+
+/* ############################################################################################# */
+
+
+@media (min-width: 120px) {
+    .product-card {
+        width: 40vmax;
+        align-items: center;
+    }
+
+    .newsletter-bx {
+        background-image: linear-gradient(140deg, rgba(3, 3, 3, 0.872), rgba(114, 60, 172, 0.973) -5.91%, rgba(0, 0, 0, 0.872), rgb(255, 26, 236) 111.58%);
+        border-radius: 10px;
+        color: #121212;
+        padding: 85px 125px;
+        margin: 20px;
+        letter-spacing: 2px;
+    }
+
+    .newsletter-bx h3 {
+        font-weight: 700;
+        font-size: 25px;
+        letter-spacing: 0.5px;
+        line-height: .70em;
+        color: #fff;
+    }
+
+    .newsletter-bx p {
+        color: aqua;
+        font-size: 30px;
+    }
+
+    .new-email-bx {
+        background: #fff;
+        margin-top: 1rem;
+        border-radius: 20px;
+        position: absolute;
+        right: 2rem;
+        z-index: 0;
+        display: flex;
+    }
+
+    .new-email-bx button {
+        background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+        padding: 10px 15px;
+        color: #fff;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        border-radius: 18px;
+    }
+
+
+
+}
+
+
+@media (min-width: 576px) {
+    .product-card {
+        width: 50vmax;
+    }
+
+    .newsletter-bx {
+        padding: 15px;
+    }
+
+    .newsletter-bx h3 {
+        font-size: 20px;
+        display: inline-block;
+        position: relative;
+        line-height: .70em;
+    }
+
+    .newsletter-bx p {
+        font-size: 30px;
+
+    }
+
+    .new-email-bx {
+        background: #fff;
+        padding: 5px;
+        border-radius: 20px;
+        position: relative;
+        left: 0rem;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+    }
+
+
+    .new-email-bx button {
+
+        padding: 15px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        width: 50vmax;
+        justify-content: center;
+    }
+
+    .newsletter-bx {
+        background-image: linear-gradient(140deg, rgba(3, 3, 3, 0.872), rgba(114, 60, 172, 0.973) -5.91%, rgba(0, 0, 0, 0.872), rgb(255, 26, 236) 111.58%);
+        border-radius: 10px;
+        color: #121212;
+        padding: 85px 125px;
+        margin: 20px;
+        letter-spacing: 2px;
+    }
+
+    .newsletter-bx h3 {
+        font-weight: 700;
+        font-size: 25px;
+        letter-spacing: 0.5px;
+        line-height: .70em;
+        color: #fff;
+    }
+
+    .newsletter-bx p {
+        color: aqua;
+        font-size: 45px;
+    }
+
+    .new-email-bx {
+        background: #fff;
+        border-radius: 20px;
+        position: relative;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .product-card {
+        width: 25vmax;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .product-card {
+        width: 20vmax;
+    }
+
+    .newsletter-bx {
+        background-image: linear-gradient(140deg, rgba(3, 3, 3, 0.872), rgba(114, 60, 172, 0.973) -5.91%, rgba(0, 0, 0, 0.872), rgb(255, 26, 236) 111.58%);
+        border-radius: 10px;
+        color: #121212;
+        padding: 85px 125px;
+        margin: 20px;
+        letter-spacing: 2px;
+    }
+
+    .newsletter-bx h3 {
+        font-weight: 700;
+        font-size: 25px;
+        letter-spacing: 0.5px;
+        line-height: .70em;
+        color: #fff;
+    }
+
+    .newsletter-bx p {
+        color: aqua;
+        font-size: 45px;
+    }
+
+    .new-email-bx {
+        background: #fff;
+        padding: 5px;
+        border-radius: 20px;
+        position: relative;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+    }
+}

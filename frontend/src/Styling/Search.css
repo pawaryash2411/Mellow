@@ -1,0 +1,37 @@
+.search-container {
+    margin-top: 7rem;
+    padding-right: 5rem;
+}
+
+.search-input-container {
+    display: flex;
+    flex-direction: row;
+
+    border: 3px solid aqua;
+    min-width: 500px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.input-search {
+    min-width: 400px;
+    padding: .7rem 1rem;
+    border: transparent;
+    background: transparent;
+    color: #ffff;
+}
+
+.search-btn {
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    opacity: .8;
+    transition: all ease-in-out .4s;
+}
+
+.search-icon-image {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 2rem;
+}

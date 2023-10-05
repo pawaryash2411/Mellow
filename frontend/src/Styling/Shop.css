@@ -1,0 +1,87 @@
+.product-shop-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-upper-container {
+    margin-left: 50rem;
+}
+
+.product-shop {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* gap: 1rem; */
+    padding-top: 1rem;
+    padding-bottom: 5rem;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin: 6vmax;
+    /* border: 1px solid firebrick; */
+    /* border-radius: 25px; */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    align-items: center;
+}
+
+.page-item {
+    --bs-pagination-bg: transparent;
+    --bs-pagination-color: white;
+    --bs-pagination-disabled-bg: transparent;
+    --bs-pagination-disabled-color: white;
+    --bs-pagination-hover-bg: aqua;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+    margin: 0;
+    background-color: transparent;
+    color: #fff;
+}
+
+
+.page-link {
+    background: transparent;
+    color: #fff;
+
+}
+
+.page-link:hover {
+    background: aqua;
+    transition: all ease-in-out .5s;
+    color: #fff;
+    border: 1px solid aqua;
+}
+
+.pageLinkActive {
+    background-color: aqua;
+    color: #000;
+    border: 1px solid aqua;
+}
+
+.page-item li {
+    margin-right: 0;
+}
+
+.drawer-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: .5rem;
+}
+
+.price-range-container {
+    display: flex;
+    flex-direction: column;
+    /* padding: 1rem; */
+}
+
+.price-range-image {
+    width: 2rem;
+    height: 2rem;
+}
