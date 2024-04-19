@@ -11,7 +11,7 @@ exports.AuthenticateTheUser = AsyncAwaitError(async (req, res, next) => {
             message: "Please Login/Register to Shop Your Favorite Products 👻"
         }))
     }
-    const decodedData = jwt.verify(token, process.env.JWT_SECRET)
+    const decodedData = jwt.verify(token, "Kuch Bhi")
 
     req.ourUser = await User.findById(decodedData.id);
     next();
