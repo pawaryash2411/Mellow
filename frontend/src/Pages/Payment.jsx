@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import CheckoutSteps from "../components/CheckoutSteps";
 import {
   CardCvcElement,
@@ -18,7 +18,7 @@ const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
   const { shippingInfo, cartItems } = useSelector((state) => state.cartData);
   const { user } = useSelector((state) => state.userData);
-
+  const [loading, setLoading] = useState(false);
   const paymentButton = useRef(null);
   const dispatch = useDispatch();
   const elements = useElements();
@@ -33,7 +33,7 @@ const Payment = () => {
   const paymentSubmitHandler = async (e) => {
     e.preventDefault();
     paymentButton.current.disabled = true;
-
+    setLoading(true);
     try {
       const config = { headers: { "Content-Type": "application/json" } };
       const { data } = await axios.post(
@@ -62,9 +62,9 @@ const Payment = () => {
         },
       });
 
-
       if (result.error) {
         paymentButton.current.disabled = false;
+        setLoading(false);
         toast.error(result.error.message);
       } else if (result.paymentIntent.status === "succeeded") {
         const order = {
@@ -84,10 +84,12 @@ const Payment = () => {
         toast.success("Payment Received Successfully");
       } else {
         paymentButton.current.disabled = false;
+        setLoading(false);
         toast.error("There's some issue while processing payment");
       }
     } catch (error) {
       paymentButton.current.disabled = false;
+      setLoading(false);
       toast.error("An error occurred during payment processing.");
       console.error(error);
     }
@@ -115,8 +117,16 @@ const Payment = () => {
                 <div className="d-flex flex-column pb-3">
                   <CardCvcElement className="payment-input" />
                 </div>
-                <button className="login-button mt-4" ref={paymentButton}>
-                  <span>{`Pay ₹${orderInfo && orderInfo.totalPrice}`}</span>
+                <button
+                  className="login-button mt-4"
+                  ref={paymentButton}
+                  disabled={loading}
+                >
+                  <span>
+                    {loading
+                      ? "Processing..."
+                      : `Pay ₹${orderInfo && orderInfo.totalPrice}`}
+                  </span>
                 </button>
               </form>
             </div>

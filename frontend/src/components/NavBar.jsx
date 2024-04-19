@@ -36,7 +36,7 @@ const NavBar = () => {
       <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
         <Container>
           <Navbar.Brand id="logo">
-            <NavLink to={"/all-orders"}>
+            <NavLink to={"/"}>
               <img src={mellowIcon} alt="Logo" />
             </NavLink>
           </Navbar.Brand>

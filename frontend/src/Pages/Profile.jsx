@@ -19,7 +19,6 @@ const Profile = () => {
   );
 
   const LogOutHandler = () => {
-    window.location.reload();
     dispatch(LogOutUser());
   };
 
@@ -126,6 +125,14 @@ const Profile = () => {
                         data-tooltip="View cart"
                         onClick={handleCart}
                         title="Your Cart"
+                      />
+                      <img
+                        src={cartIcon}
+                        alt="logout"
+                        className="logout-image"
+                        data-tooltip="Orders"
+                        onClick={() => navigate("/all-orders")}
+                        title="Orders"
                       />
                       <img
                         src={LogoutIcon}

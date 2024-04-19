@@ -21,6 +21,7 @@ import { useTheme } from "@mui/material/styles";
 import Starred from "../assets/starred.png";
 import { createNewReview } from "../Redux/Actions/productActions";
 import Typography from "@mui/material/Typography";
+import Loader from "../components/Loader";
 
 const ProductDetails = () => {
   const [itemDetails, setItemDetails] = useState({});
@@ -30,6 +31,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -44,13 +46,16 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`${baseUrl}/product/${id}`);
         const data = response.data;
         if (data.success) {
           setItemDetails(data.getProduct);
+          setLoading(false);
         }
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     };
 
@@ -104,105 +109,121 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="card-container">
-        <div className="left">
-          <Carousel className="product-carousel-container">
-            {itemDetails?.images?.map((data, i) => (
-              <div key={i}>
-                <img src={data.url} alt="imageData" className="product-image" />
-              </div>
-            ))}
-          </Carousel>
-        </div>
-        <div className="right">
-          <div className="product-info">
-            <div className="details">
-              <div className="product-name">
-                <h1>{itemDetails.category}</h1>
-                <div className="ratings-Box">
-                  <Rating {...options} />
-                  <label className="ratings-text">
-                    <small>({itemDetails?.reviews?.length || 0})</small>
-                  </label>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="card-container">
+            <div className="left">
+              <Carousel className="product-carousel-container">
+                {itemDetails?.images?.map((data, i) => (
+                  <div key={i}>
+                    <img
+                      src={data.url}
+                      alt="imageData"
+                      className="product-image"
+                    />
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+            <div className="right">
+              <div className="product-info">
+                <div className="details">
+                  <div className="product-name">
+                    <h1>{itemDetails.category}</h1>
+                    <div className="ratings-Box">
+                      <Rating {...options} />
+                      <label className="ratings-text">
+                        <small>({itemDetails?.reviews?.length || 0})</small>
+                      </label>
+                    </div>
+                  </div>
+                  <h2>{itemDetails.name}</h2>
+                  <h3 className="product-description">
+                    {itemDetails.description}
+                  </h3>
+                </div>
+                <div className="product-details-box">
+                  <ul>
+                    <li className="stock">Price</li>
+                    <li className="price-count">Rs. {itemDetails.price} /-</li>
+                  </ul>
+                  <ul>
+                    <li className="stock">Stock</li>
+
+                    <li
+                      className={
+                        itemDetails.Stock < 1 ? "stock-out" : "stock-count"
+                      }
+                    >
+                      {itemDetails.Stock < 1
+                        ? "Out of Stock"
+                        : itemDetails.Stock}
+                    </li>
+                  </ul>
+
+                  <ul>
+                    <li className="product_size_text">Size</li>
+                    <li className="product_size">SM</li>
+                    <li className="product_size">M</li>
+                    <li className="product_size">L</li>
+                    <li className="product_size">XL</li>
+                  </ul>
+                  <ul>
+                    <li className="stock">Quantity</li>
+                    <li>
+                      <div className="cart-quantity">
+                        <button
+                          className="quantity-btn decrease"
+                          onClick={decreaseQuantity}
+                        >
+                          -
+                        </button>
+                        <input
+                          className="quantity-input"
+                          type="number"
+                          value={quantity}
+                          readOnly
+                        />
+                        <button
+                          className="quantity-btn increase"
+                          onClick={increaseQuantity}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div className="cart-container">
+                  <button
+                    className="foot login-button"
+                    onClick={AddToCartHandler}
+                  >
+                    <img src={CartIcon} alt="cart" className="foot-img" />
+                    Add To Cart
+                  </button>
                 </div>
               </div>
-              <h2>{itemDetails.name}</h2>
-              <h3 className="product-description">{itemDetails.description}</h3>
-            </div>
-            <div className="product-details-box">
-              <ul>
-                <li className="stock">Price</li>
-                <li className="price-count">Rs. {itemDetails.price} /-</li>
-              </ul>
-              <ul>
-                <li className="stock">Stock</li>
-
-                <li
-                  className={
-                    itemDetails.Stock < 1 ? "stock-out" : "stock-count"
-                  }
-                >
-                  {itemDetails.Stock < 1 ? "Out of Stock" : itemDetails.Stock}
-                </li>
-              </ul>
-
-              <ul>
-                <li className="product_size_text">Size</li>
-                <li className="product_size">SM</li>
-                <li className="product_size">M</li>
-                <li className="product_size">L</li>
-                <li className="product_size">XL</li>
-              </ul>
-              <ul>
-                <li className="stock">Quantity</li>
-                <li>
-                  <div className="cart-quantity">
-                    <button
-                      className="quantity-btn decrease"
-                      onClick={decreaseQuantity}
-                    >
-                      -
-                    </button>
-                    <input
-                      className="quantity-input"
-                      type="number"
-                      value={quantity}
-                      readOnly
-                    />
-                    <button
-                      className="quantity-btn increase"
-                      onClick={increaseQuantity}
-                    >
-                      +
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div className="cart-container">
-              <button className="foot login-button" onClick={AddToCartHandler}>
-                <img src={CartIcon} alt="cart" className="foot-img" />
-                Add To Cart
-              </button>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="container">
-        <h2 className="product-reviews">
-          User Reviews
-          <Button
-            variant="text"
-            style={{ color: "aqua" }}
-            size="small"
-            onClick={handleClickOpen}
-          >
-            <img src={Starred} alt="icon" className="drawer-icon" /> Rate &
-            Review Product
-          </Button>
-        </h2>
-      </div>
+          <div className="container">
+            <h2 className="product-reviews">
+              User Reviews
+              <Button
+                variant="text"
+                style={{ color: "aqua" }}
+                size="small"
+                onClick={handleClickOpen}
+              >
+                <img src={Starred} alt="icon" className="drawer-icon" /> Rate &
+                Review Product
+              </Button>
+            </h2>
+          </div>
+        </>
+      )}
 
       <Dialog
         fullScreen={fullScreen}

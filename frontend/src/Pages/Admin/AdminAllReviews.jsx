@@ -37,6 +37,7 @@ const AdminAllReviews = () => {
       dispatch(updateReviewsAdmin(productId));
     }
   }, [productId, dispatch]);
+  
   const columns = [
     {
       field: "id",

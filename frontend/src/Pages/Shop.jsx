@@ -269,14 +269,14 @@ const Shop = () => {
             itemsCountPerPage={productsPerPage}
             totalItemsCount={productCount}
             onChange={handlePageChange}
-            itemClass="page-item"
-            linkClass="page-link"
+            itemclassName="page-item"
+            linkclassName="page-link"
             firstPageText="1"
             lastPageText="Last"
             nextPageText="Next"
             prevPageText="Previous"
-            activeClass="pageItemActive"
-            activeLinkClass="pageLinkActive"
+            activeclassName="pageItemActive"
+            activeLinkclassName="pageLinkActive"
           />
         </div>
       </div>

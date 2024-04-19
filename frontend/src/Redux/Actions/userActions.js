@@ -19,6 +19,7 @@ export const userLogin = (email, password) => async (dispatch) => {
                 type: LOGIN_SUCCESS,
                 payload: data.user
             })
+            dispatch(LoadUser());
             toast.success("Login Successfully!! 🪄");
         }
 
@@ -46,6 +47,7 @@ export const userRegister = (registerData) => async (dispatch) => {
                 type: REGISTER_SUCCESS,
                 payload: data.user
             })
+            dispatch(LoadUser());
             toast.success("Congratulations!! Account Created Successfully 🕺");
         }
 
@@ -93,6 +95,7 @@ export const LogOutUser = () => async (dispatch) => {
         dispatch({
             type: LOGIN_SUCCESS,
         })
+        dispatch(LoadUser());
         toast.success("Log Out Successfully 🥲");
 
     } catch (error) {
@@ -120,6 +123,7 @@ export const updateUserProfile = (registerData) => async (dispatch) => {
                 type: UPDATE_PROFILE_SUCCESS,
                 payload: data.success
             })
+            dispatch(LoadUser());
             toast.success("Congratulations!! Your Profile Updated Successfully 🕺");
         }
 
@@ -146,6 +150,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
                 type: UPDATE_PASSWORD_SUCCESS,
                 payload: data.success
             })
+            dispatch(LoadUser());
             toast.success("Congratulations!! Your Password Updated Successfully 🕺");
         }
 
@@ -212,6 +217,7 @@ export const updateUser = (id, userData) => async (dispatch) => {
             type: ADMIN_UPDATE_USER_SUCCESS,
             payload: data.success,
         })
+        dispatch(LoadUser());
     } catch (error) {
         dispatch({
             type: ADMIN_UPDATE_USER_FAIL,
