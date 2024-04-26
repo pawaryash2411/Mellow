@@ -16,14 +16,12 @@ const UpdateAdminProduct = () => {
   const [itemDetails, setItemDetails] = useState({});
 
   const productCategories = [
-    "Fashion",
-    "SmartPhone",
-    "Laptops",
-    "Electronics",
-    "Books",
-    "Furniture",
-    "Healthcare",
-    "Beauty",
+    "Dry Fruits",
+    "Jewelries",
+    "Carpets",
+    "Garments",
+    "Handicrafts",
+    "Gifting",
   ];
 
   useEffect(() => {

@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ############################################################################################# */
 /* Default CSS */
@@ -59,7 +62,6 @@ h6 {
 p,
 a,
 li,
-button,
 ul {
     margin: 0;
     padding: 0;
@@ -76,10 +78,6 @@ img {
     height: auto;
 }
 
-button {
-    border: 0;
-    background-color: transparent;
-}
 
 input:focus,
 textarea:focus,
@@ -211,47 +209,6 @@ span.navbar-text {
 
 .social-icon a:hover img {
     filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rotate(346deg) brightness(95%) contrast(86%);
-}
-
-.navbar-text button {
-    font-weight: 700;
-    color: #fff;
-    border: 2px solid #fff;
-    padding: 8px 15px;
-    font-size: 18px;
-    margin-left: 18px;
-    border-radius: 5px;
-    position: relative;
-    background-color: transparent;
-    transition: 0.3s ease-in-out;
-}
-
-.navbar-text button span {
-    z-index: 1;
-}
-
-.navbar-text button::before {
-    content: "";
-    width: 0%;
-    height: 100%;
-    position: absolute;
-    background-color: #fff;
-    color: aqua;
-    left: 0;
-    top: 0;
-    z-index: -1;
-    transition: 0.3s ease-in-out;
-}
-
-.navbar-text button:hover {
-    color: #000000d6;
-}
-
-.navbar-text button:hover::before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
 }
 
 nav.navbar .navbar-toggler:active,
@@ -413,14 +370,6 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     padding: 0 15px;
 }
 
-.new-email-bx button {
-    background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
-    padding: 20px 60px;
-    color: #fff;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    border-radius: 18px;
-}
 
 
 
@@ -489,18 +438,6 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
         z-index: 0;
         display: flex;
     }
-
-    .new-email-bx button {
-        background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
-        padding: 10px 15px;
-        color: #fff;
-        font-weight: 500;
-        letter-spacing: 0.5px;
-        border-radius: 18px;
-    }
-
-
-
 }
 
 
@@ -536,11 +473,6 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
         align-items: center;
     }
 
-
-    .new-email-bx button {
-
-        padding: 15px 30px;
-    }
 }
 
 @media (max-width: 768px) {

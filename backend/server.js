@@ -3,7 +3,6 @@ const DatabaseConnection = require('./config/database');
 const dotenv = require('dotenv');
 const cloudinary = require('cloudinary');
 
-
 // If the Uncaught Expection error Occured
 process.on("uncaughtException", (err) => {
     console.log(`Error: ${err.message}`);

@@ -25,14 +25,12 @@ import CategoryIcon from "@mui/icons-material/Category";
 import StarsIcon from "@mui/icons-material/Stars";
 
 const categories = [
-  "Fashion",
-  "SmartPhone",
-  "Laptops",
-  "Electronics",
-  "Books",
-  "Furniture",
-  "Healthcare",
-  "Beauty",
+  "Dry Fruits",
+  "Jewelries",
+  "Carpets",
+  "Garments",
+  "Handicrafts",
+  "Gifting",
 ];
 
 const Shop = () => {

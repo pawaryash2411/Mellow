@@ -20,7 +20,7 @@ app.use(fileUploader());
 // })
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://tajalli-updated.netlify.app',
     'Content-Type': 'Authorization',
     credentials: true,
     optionSuccessStatus: 200

@@ -8,14 +8,12 @@ import { ADMIN_CREATE_PRODUCTS_RESET } from "../../Redux/Constants/productConsta
 import { toast } from "react-toastify";
 
 const productCategories = [
-  "Fashion",
-  "SmartPhone",
-  "Laptops",
-  "Electronics",
-  "Books",
-  "Furniture",
-  "Healthcare",
-  "Beauty",
+  "Dry Fruits",
+  "Jewelries",
+  "Carpets",
+  "Garments",
+  "Handicrafts",
+  "Gifting",
 ];
 const AdminCreateProduct = () => {
   const { loading, success } = useSelector((state) => state.createNewProduct);
