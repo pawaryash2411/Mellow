@@ -103,7 +103,7 @@ export const createNewProduct = (productData) => async (dispatch) => {
 
     try {
         dispatch({ type: ADMIN_CREATE_PRODUCTS_REQUESTS });
-        const { data } = await axios.post(`${baseUrl}/product/new`, productData)
+        const { data } = await axios.post(`${baseUrl}/product/new`, productData, { withCredentials: true })
 
         dispatch({
             type: ADMIN_CREATE_PRODUCTS_SUCCESS,
@@ -124,7 +124,7 @@ export const updateNewProduct = (id, productData) => async (dispatch) => {
 
     try {
         dispatch({ type: ADMIN_UPDATE_PRODUCTS_REQUESTS });
-        const config = { headers: { 'Content-Type': 'application/json' } };
+        const config = { headers: { 'Content-Type': 'application/json', withCredentials: true } };
         const { data } = await axios.put(`${baseUrl}/admin/product/${id}`, productData, config)
 
         dispatch({
@@ -145,7 +145,7 @@ export const deleteProduct = (id) => async (dispatch) => {
 
     try {
         dispatch({ type: ADMIN_DELETE_PRODUCTS_REQUESTS });
-        const { data } = await axios.delete(`${baseUrl}/admin/product/${id}`)
+        const { data } = await axios.delete(`${baseUrl}/admin/product/${id}`, { withCredentials: true })
 
         dispatch({
             type: ADMIN_DELETE_PRODUCTS_SUCCESS,
@@ -163,7 +163,7 @@ export const deleteProduct = (id) => async (dispatch) => {
 export const updateReviewsAdmin = (id) => async (dispatch) => {
     try {
         dispatch({ type: ADMIN_ALL_REVIEWS_REQUESTS });
-        const { data } = await axios.get(`${baseUrl}/admin/reviews?id=${id}`)
+        const { data } = await axios.get(`${baseUrl}/admin/reviews?id=${id}`, { withCredentials: true })
 
         dispatch({
             type: ADMIN_ALL_REVIEWS_SUCCESS,

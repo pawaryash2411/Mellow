@@ -6,7 +6,7 @@ import { baseUrl } from '../../UrlHelper/baseUrl';
 export const createNewOrder = (order) => async (dispatch, getState) => {
     try {
         dispatch({ type: CREATE_ORDER_REQUEST });
-        const config = { headers: { 'Content-Type': 'application/json' } };
+        const config = { headers: { 'Content-Type': 'application/json' }, withCredentials: true };
         const { data } = await axios.post(`${baseUrl}/order/new`, order, config);
         if (data.status === 200) {
             dispatch({
@@ -23,11 +23,11 @@ export const createNewOrder = (order) => async (dispatch, getState) => {
 };
 
 // Getting All Order Details
-export const MyOrders = () => async (dispatch, getState) => {
+export const MyOrders = () => async (dispatch) => {
     try {
         dispatch({ type: MY_ORDER_REQUEST });
-
-        const { data } = await axios.get(`${baseUrl}/orders/me`);
+        const config = { withCredentials: true };
+        const { data } = await axios.get(`${baseUrl}/orders/me`, config);
         if (data.success === true) {
             dispatch({
                 type: MY_ORDER_SUCCESS,
@@ -46,8 +46,8 @@ export const MyOrders = () => async (dispatch, getState) => {
 export const singleOrderDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: ORDER_DETAILS_REQUEST });
-
-        const { data } = await axios.get(`${baseUrl}/order/${id}`)
+        const config = { withCredentials: true };
+        const { data } = await axios.get(`${baseUrl}/order/${id}`, config)
         if (data.success) {
             dispatch({
                 type: ORDER_DETAILS_SUCCESS,
@@ -66,8 +66,8 @@ export const singleOrderDetails = (id) => async (dispatch) => {
 export const getAllAdminOrders = () => async (dispatch) => {
     try {
         dispatch({ type: ADMIN_ORDER_REQUEST });
-
-        const { data } = await axios.get(`${baseUrl}/admin/orders`);
+        const config = { withCredentials: true };
+        const { data } = await axios.get(`${baseUrl}/admin/orders`, config);
         if (data.success === true) {
             dispatch({
                 type: ADMIN_ORDER_SUCCESS,
@@ -88,7 +88,7 @@ export const updateOrder = (id, orderData) => async (dispatch) => {
 
     try {
         dispatch({ type: ADMIN_UPDATE_ORDER_REQUESTS });
-        const config = { headers: { 'Content-Type': 'application/json' } };
+        const config = { headers: { 'Content-Type': 'application/json' }, withCredentials: true };
         const { data } = await axios.put(`${baseUrl}/admin/orders/${id}`, orderData, config)
 
         dispatch({
@@ -107,8 +107,9 @@ export const updateOrder = (id, orderData) => async (dispatch) => {
 export const deleteOrder = (id) => async (dispatch) => {
 
     try {
+        const config = { withCredentials: true };
         dispatch({ type: ADMIN_DELETE_ORDER_REQUESTS });
-        const { data } = await axios.delete(`${baseUrl}/admin/orders/${id}`)
+        const { data } = await axios.delete(`${baseUrl}/admin/orders/${id}`, config)
 
         dispatch({
             type: ADMIN_DELETE_ORDER_SUCCESS,

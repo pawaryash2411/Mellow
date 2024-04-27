@@ -10,7 +10,7 @@ export const userLogin = (email, password) => async (dispatch) => {
         dispatch({
             type: LOGIN_REQUESTS,
         })
-        const config = { headers: { 'Content-Type': 'application/json' } };
+        const config = { headers: { 'Content-Type': 'application/json', }, withCredentials: true };
 
         const { data } = await axios.post(`${baseUrl}/login`, { email, password }, config)
 
@@ -114,7 +114,7 @@ export const updateUserProfile = (registerData) => async (dispatch) => {
         dispatch({
             type: UPDATE_PROFILE_REQUESTS,
         })
-        const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        const config = { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true };
 
         const { data } = await axios.put(`${baseUrl}/me/update`, registerData, config)
 
@@ -142,7 +142,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
         dispatch({
             type: UPDATE_PASSWORD_REQUESTS,
         })
-        const config = { headers: { 'Content-Type': 'application/json' } };
+        const config = { headers: { 'Content-Type': 'application/json' }, withCredentials: true };
 
         const { data } = await axios.put(`${baseUrl}/password/update`, passwords, config)
         if (data.success === true) {
@@ -172,7 +172,9 @@ export const getAdminAllUsers = () => async (dispatch) => {
             type: ADMIN_USER_REQUESTS,
         })
 
-        const { data } = await axios.get(`${baseUrl}/admin/user`)
+        const config = { withCredentials: true };
+
+        const { data } = await axios.get(`${baseUrl}/admin/user`, config)
         if (data.success) {
             dispatch({
                 type: ADMIN_USER_SUCCESS,
@@ -191,8 +193,9 @@ export const getAdminAllUsers = () => async (dispatch) => {
 export const singleUserDetails = (id) => async (dispatch) => {
 
     try {
+        const config = { withCredentials: true };
         dispatch({ type: SINGLE_USER_REQUESTS });
-        const { data } = await axios.get(`${baseUrl}/admin/user/${id}`)
+        const { data } = await axios.get(`${baseUrl}/admin/user/${id}`, config)
 
         dispatch({
             type: SINGLE_USER_SUCCESS,
@@ -210,8 +213,9 @@ export const singleUserDetails = (id) => async (dispatch) => {
 export const updateUser = (id, userData) => async (dispatch) => {
 
     try {
+        const config = { withCredentials: true };
         dispatch({ type: ADMIN_UPDATE_USER_REQUESTS });
-        const { data } = await axios.put(`${baseUrl}/admin/user/${id}`, userData)
+        const { data } = await axios.put(`${baseUrl}/admin/user/${id}`, userData, config)
 
         dispatch({
             type: ADMIN_UPDATE_USER_SUCCESS,
@@ -230,8 +234,9 @@ export const updateUser = (id, userData) => async (dispatch) => {
 export const deleteUser = (id) => async (dispatch) => {
 
     try {
+        const config = { withCredentials: true };
         dispatch({ type: ADMIN_DELETE_USER_REQUESTS });
-        const { data } = await axios.delete(`${baseUrl}/admin/user/${id}`)
+        const { data } = await axios.delete(`${baseUrl}/admin/user/${id}`, { config })
 
         dispatch({
             type: ADMIN_DELETE_USER_SUCCESS,
